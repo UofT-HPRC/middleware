@@ -28,6 +28,7 @@ namespace galapagos{
             std::condition_variable cv;
         public:
             stream();
+            stream(std::string _name);
             //std::vector<ap_uint<64> > read(size_t *size, short * dest);
             void write(char * buffer, int size, short  dest);
             bool try_read(galapagos::stream_packet &gp);
@@ -36,6 +37,8 @@ namespace galapagos{
             galapagos::stream_packet read();
             bool empty();
             size_t size();
+            short id;
+            std::string name;
     };
 }
 #else            

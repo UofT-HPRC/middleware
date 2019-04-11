@@ -5,6 +5,11 @@ galapagos::stream::stream(){
     _stream = std::make_unique<std::queue <galapagos::stream_packet> >();
 }
 
+galapagos::stream::stream(std::string _name){
+    _stream = std::make_unique<std::queue <galapagos::stream_packet> >();
+    name = _name;
+}
+
 galapagos::stream_packet galapagos::stream::read(){
     
     galapagos::stream_packet gps;
@@ -136,7 +141,11 @@ void galapagos::stream::write(char * buffer, int size, short dest){
             gps.last = 0;
         else{
             gps.last = 1;
+
+
+#ifdef DEBUG
             std::cout<< " writing last" << std::endl;
+#endif
         }
 
         //buffer+=(PACKET_DATA_LENGTH/8);

@@ -536,17 +536,17 @@ def userApplicationRegionSwitchesInst(tcl_user_app, sim):
     else:
 #for simulation purposes use custom arbiter instead of axis_switch
         if(sim == 0):
-            tcl_user_app.instBlock(
-                    {
-                    'name':'axis_switch',
-                    'inst':'applicationRegion/input_switch',
-                    'clks':['aclk'],
-                    'resetns':['aresetn'],
-                    'properties':['CONFIG.NUM_SI {2}',
-                        'CONFIG.NUM_MI {' + str(num_slave_s_axis_global) + '}',
-                        'CONFIG.ARG_ON_TLAST {1}']
-                    }
-                    )
+             tcl_user_app.instBlock(
+                     {
+                     'name':'axis_switch',
+                     'inst':'applicationRegion/input_switch',
+                     'clks':['aclk'],
+                     'resetns':['aresetn'],
+                     'properties':['CONFIG.NUM_SI {2}',
+                         'CONFIG.NUM_MI {' + str(num_slave_s_axis_global) + '}',
+                         'CONFIG.ARG_ON_TLAST {1}']
+                     }
+                     )
         else:
             tcl_user_app.instBlock(
                     {

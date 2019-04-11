@@ -12,6 +12,8 @@ galapagos::streaming_core::streaming_core(
     
     id = _id;
     in = _in;
+    if(in != nullptr)
+        in->id = id;
     out = _out;
 }
 
