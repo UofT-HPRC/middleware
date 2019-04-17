@@ -25,7 +25,8 @@ namespace galapagos{
                     void accept();
                     void do_accept();
                     boost::asio::ip::tcp::acceptor acceptor_;
-                    session_container * sessions; 
+                    session_container * sessions;
+                    boost::asio::io_context * _io_context;
             };
 
         }//tcp namespace

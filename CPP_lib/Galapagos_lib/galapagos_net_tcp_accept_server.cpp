@@ -20,9 +20,10 @@ accept_server::accept_server(boost::asio::io_context *io_context,
                                                   session_container * _sessions)
     : acceptor_(*io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
 {
-   
+  
+    _io_context = io_context;
     sessions = _sessions;
-    do_accept(); 
+//    do_accept(); 
       
       
     std::thread t_accept(&accept_server::accept,this);
@@ -37,13 +38,13 @@ void accept_server::accept(){
 
 void accept_server::do_accept()
 {
-//      std::cout << "IN ACCEPT" << std::endl;
       acceptor_.async_accept(
         [this](boost::system::error_code ec, boost::asio::ip::tcp::socket socket)
         {
           if (!ec)
           {
-            sessions->add_session(std::move(socket));
+            std::cout << "ACCEPTING SESSION" << std::endl;
+            sessions->add_session(std::move(socket), _io_context);
           }
 
           do_accept();
